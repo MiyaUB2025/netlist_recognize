@@ -1,0 +1,9 @@
+Extract the dataset.zip file into dataset folder
+
+=========================================
+example of correct folder settup is:
+../dataset/dataset 2024-12-11 01 proposed/var.DataSet.Test.DatasetTraining.bin
+
+../dataset/dataset 2024-12-11 01 proposed/var.DataSet.Test.DatasetValidate.bin
+
+../dataset/dataset 2024-12-11 01 proposed/var.DataSet.Test.resultInformation.txt

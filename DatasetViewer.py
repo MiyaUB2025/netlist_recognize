@@ -18,11 +18,11 @@ view_training = 0               # 1 => training dataset;   0 => validation datas
 
 datasetFolderSelect = 13        # dataset selection folder
 
-sizenumoffig = 2               # number of data show in x axis 
+sizenumoffig = 3               # number of data show in x axis 
 squarefig = 1                   # Square figure;  1 => number of y axis data is equal from x axis data
 sizenumoffigy = 10              # number of data show in y axis (only apply if square figure is 0)
 
-StartFigIndex = 280               # index data start to show
+StartFigIndex = 28000               # index data start to show
 showEdge = 1                    # show edge information name
 
 size_node_size = 300            # node size for single data
@@ -108,12 +108,20 @@ def save_variable(var, pathfile, variablename):
         pickle.dump(var, file1)
         print('Saving ' + variablename + ' Variable Success')
     except:
-        print('Saving ' + variablename + ' Variable Failed')
+        print('Saving ' + variablename + ' Variable Failed') 
 
 if view_training == 1:
     dataset = load_variable(dataset, datasetdir, 'DataSet.Test.' + MOSFETdatasetName)
 else:
     dataset = load_variable(dataset, datasetdir, 'DataSet.Test.' + MOSFETdatasetNameValidate)
+
+if squarefig == 1:
+    minfignum = sizenumoffig * sizenumoffig
+else:
+    minfignum = sizenumoffig * sizenumoffigy
+
+if StartFigIndex > (len(dataset) - minfignum):
+    StartFigIndex = len(dataset) - minfignum
 
 datasetlength = len(dataset) - StartFigIndex
 

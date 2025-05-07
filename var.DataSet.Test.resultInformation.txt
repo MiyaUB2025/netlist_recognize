@@ -1,0 +1,56 @@
+Abtraction with 1 nodes, multi-edge and connection node plus dirrection
+
+
+
+ ****** Dataset Result Information for DatasetTraining ******
+Netlist Length = 281162 
+Netlist Number of Line = 5740 
+Number of MOSFET(s) found = 3344
+Number of POWER(s) found = 714
+Number of RESISTOR(s) found = 208
+Number of CAPACITOR(s) found = 6
+Number of INDUCTOR(s) found = 5
+Directed graph: True
+Number of nodes: 9649
+Number of edges: 22368
+Number of graph: 355
+Number of graph (after duplication): 355
+Minimum number of nodes: 6
+Maximum number of nodes: 113
+Minimum number of edges: 6
+Maximum number of edges: 316
+Number of class: 121
+Minimum data per class: 1
+Maximum data per class: 135
+
+
+
+
+Abtraction with 1 nodes, multi-edge and connection node plus dirrection
+
+
+
+ ****** Dataset Result Information for DatasetValidate ******
+Netlist Length = 5235807 
+Netlist Number of Line = 95618 
+Number of MOSFET(s) found = 74626
+Number of POWER(s) found = 4234
+Number of RESISTOR(s) found = 7804
+Number of CAPACITOR(s) found = 6
+Number of INDUCTOR(s) found = 5
+Directed graph: True
+Number of nodes: 191947
+Number of edges: 487484
+Number of graph: 2115
+Number of graph (after duplication): 2115
+Minimum number of nodes: 6
+Maximum number of nodes: 253
+Minimum number of edges: 6
+Maximum number of edges: 736
+Number of class: 121
+Minimum data per class: 1
+Maximum data per class: 795
+
+
+
+

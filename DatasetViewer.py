@@ -14,22 +14,33 @@ import math
 
 from torch_geometric.utils import to_networkx
 
-view_training = 0               # 0 => traiing dataset;   1 => validation dataset
+view_training = 0               # 1 => training dataset;   0 => validation dataset
 
-datasetFolderSelect = 11        # dataset selection folder
+datasetFolderSelect = 13        # dataset selection folder
 
-sizenumoffig = 10               # number of data show in x axis 
+sizenumoffig = 2               # number of data show in x axis 
 squarefig = 1                   # Square figure;  1 => number of y axis data is equal from x axis data
 sizenumoffigy = 10              # number of data show in y axis (only apply if square figure is 0)
 
-StartFigIndex = 0               # index data start to show
-showEdge = 0                    # show edge information name
+StartFigIndex = 280               # index data start to show
+showEdge = 1                    # show edge information name
 
 size_node_size = 300            # node size for single data
 
+show_pic_request = 1
+
+request = []
+request.append(19)
+request.append(20)
+request.append(90)
+request.append(109)
+# request.append(1339)
+# request.append(1341)
+# request.append(1342)
 
 
 
+dataset_avail = 1
 
 if datasetFolderSelect == 1:
     datasetFolder = "dataset 2024-12-11 01 proposed"
@@ -51,10 +62,20 @@ elif datasetFolderSelect == 9:
     datasetFolder = "dataset 2024-12-11 09 1 nodes conn dir"
 elif datasetFolderSelect == 10:
     datasetFolder = "dataset 2024-12-11 10 1 nodes multi dir"
-else:
+elif datasetFolderSelect == 11:
     datasetFolder = "dataset 2024-12-11 11 1 nodes multi conn dir"
+elif datasetFolderSelect == 12:
+    datasetFolder = "dataset 2024-12-11 12 proposed plus 60"
+elif datasetFolderSelect == 13:
+    datasetFolder = "dataset 2024-12-11 13 1 nodes multi conn no reverse"
+else:
+    datasetFolder = ""
+    dataset_avail = 0
 
-datasetdir = 'dataset\\' + datasetFolder + '\\'
+if dataset_avail == 1:
+    datasetdir = 'dataset\\' + datasetFolder + '\\'
+else:
+    datasetdir = ""
 
 MOSFETdatasetName = "DatasetTraining"
 MOSFETdatasetNameValidate = "DatasetValidate"
@@ -182,9 +203,19 @@ if sizenumoffig != 1:
         # Plot graph
         if i >= StartFigIndex:
             if j < squarenumoffig:
+                jshow = 0
                 color = switch(data.y.type(torch.LongTensor))
-                Gdatai = dataset[i]
-                
+                if show_pic_request == 1:
+                    try:
+                        Gdatai = dataset[request[j]]
+                        jshow = request[j]
+                    except:
+                        Gdatai = dataset[i]
+                        jshow = i
+                else:
+                    Gdatai = dataset[i]
+                    jshow = i
+
                 ix = np.unravel_index(j, ax.shape)
                 fig.axes[j].patch.set_facecolor(color)
                 fig.axes[j].patch.set_alpha(0.3)
@@ -196,7 +227,7 @@ if sizenumoffig != 1:
                 fig.axes[j].spines['left'].set_linewidth(3)
                 fig.axes[j].spines['right'].set_color('w')
                 fig.axes[j].spines['right'].set_linewidth(3)
-                G = to_networkx(dataset[i], to_undirected=False)
+                G = to_networkx(Gdatai, to_undirected=False)
                 G.color = []
                 G.pinName = {}
                 try :
@@ -276,7 +307,7 @@ if sizenumoffig != 1:
                     except:
                         None
                 
-                print("Fetching Dataset no {}".format(j))
+                print("Fetching Dataset no {}".format(j) + " ({})".format(jshow))
                 j += 1
 
     plt.show()
